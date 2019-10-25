@@ -1,6 +1,7 @@
 <?php
 namespace TdTrung\OSRecognizer;
 
+/** OS Recognizer **/
 class OSRecognizer
 {
     private $osMap = [
