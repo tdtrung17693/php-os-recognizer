@@ -4,7 +4,7 @@ namespace TdTrung\OSRecognizer;
 class OSRecognizer
 {
     private $osMap = [
-        '/win/i'      =>  'windows',
+        '/^win/i'      =>  'windows',
         '/darwin/i'   =>  'mac',
         '/linux/i'    =>  'linux',
         '/freebsd/i'  =>  'freebsd',
@@ -35,7 +35,7 @@ class OSRecognizer
             $this->release = "{$matches[1]}.{$matches[2]}.{$matches[3]}";
         } else if ($this->platform == 'mac') {
             $return = shell_exec('system_profiler SPSoftwareDataType');
-            preg_match('/System Version:\s*.*\s\((\w+)\)\n\s+Kernel Version:.*Darwin\s*([\w.]+)$/', $return, $matches);
+            preg_match('/System Version:\s*.*\s\((\w+)\)\n\s*Kernel Version:\s*Darwin\s*([\w.]+)\n/', $return, $matches);
             $this->release = "{$matches[2]}.{$matches[1]}";
         } else {
             $this->release = php_uname('r');
